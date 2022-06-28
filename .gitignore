@@ -1,0 +1,36 @@
+node_modules
+package-lock.json
+.DS_Store
+.env
+.env.live
+.env-*
+.idea
+.vscode
+.idea
+docker-compose.yml
+docker-compose*generated.yml
+*.swp
+
+**/*.tfvars
+**/*.tfstate
+**/*.tfstate*
+**/.terraform/
+
+tilt_modules
+Tiltfile
+.tilt*
+clouddev.services
+devconfig.json
+
+# locally modified kubernetes manifests
+_scripts/clouddev/**/overlays/
+_scripts/clouddev/**/v*/
+!_scripts/clouddev/**/templates
+**/provision/k8s
+!**/provision/k8s/templates
+
+.clouddev
+
+# repos that are not submodules
+/chat-web
+/web

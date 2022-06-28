@@ -1,0 +1,26 @@
+{
+    "name": "calendly_sdk",
+    "version": "0.0.0",
+    "main": "index.ts",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "DEBUG=kapp* ts-node .",
+      "start:local": "NODE_ENV=local DEBUG=kapp* ts-node ."
+    },
+    "author": "",
+    "license": "ISC",
+    "engines": {
+      "npm": ">=7.0.0",
+      "node": ">=16.0.0"
+    },
+    "dependencies": {
+      "@kustomer/apps-server-sdk": "^0.0.17",
+      "dotenv": "^16.0.1"
+    },
+    "devDependencies": {
+      "@types/express": "^4.17.13",
+      "@types/node": "^18.0.0",
+      "ts-node": "^10.8.1",
+      "typescript": "^4.7.4"
+    }
+  }
