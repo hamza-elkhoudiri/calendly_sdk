@@ -7,6 +7,8 @@ export function onSubscriptionEvent(app: KApp, {}: API.Calendly) {
     try {
       app.log.info("event arrived!");
 
+      app.log.info("body", body);
+
       const Org = app.in(org);
 
       const kobject = await helpers.getSubscriptionKobject(
@@ -15,7 +17,13 @@ export function onSubscriptionEvent(app: KApp, {}: API.Calendly) {
         app
       );
 
-      app.log.info("kobject", kobject);
+      const event = { kobject, calendly: body.event };
+
+      if (event.kobject) {
+        app.log.info("THERE IS A KOBJECT", event.kobject);
+      }
+
+      app.log.info("No kobject");
     } catch (err) {
       app.log.error("failed to process webhook", err);
     }
