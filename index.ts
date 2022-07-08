@@ -2,6 +2,7 @@ import "dotenv/config";
 import { AppOptions, KApp } from "@kustomer/apps-server-sdk";
 import { APP_ROLES, SUBSCRIPTION_EVENT } from "./constants";
 import * as API from "./api";
+import * as handlers from "./handlers";
 
 if (!process.env.BASE_URL) {
   throw new Error("baseUrl is required");
@@ -11,7 +12,7 @@ if (!process.env.CLIENT_ID || !process.env.CLIENT_SECRET) {
   throw new Error("clientId and clientSecret are required");
 }
 
-const APP_VERSION = "3.0.11";
+const APP_VERSION = "3.0.12";
 
 const options: AppOptions = {
   app: "calendly_sdk",
@@ -75,9 +76,7 @@ app.onInstall = async (_userId, orgId) => {
       process.env.NODE_ENV === "local"
     );
 
-    app.onHook(SUBSCRIPTION_EVENT, () => {
-      console.log("HELLO HELLO");
-    });
+    app.onHook(SUBSCRIPTION_EVENT, handlers.onSubscriptionEvent(app, Calendly));
 
     app.log.info(await app.in("aacebo").getToken());
   } catch (err) {
