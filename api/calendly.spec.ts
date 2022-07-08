@@ -58,10 +58,7 @@ const collectionResponse = {
 };
 
 describe("Calendly", () => {
-  const calendly = new Calendly(
-    "eyJraWQiOiIxY2UxZTEzNjE3ZGNmNzY2YjNjZWJjY2Y4ZGM1YmFmYThhNjVlNjg0MDIzZjdjMzJiZTgzNDliMjM4MDEzNWI0IiwidHlwIjoiUEFUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL2F1dGguY2FsZW5kbHkuY29tIiwiaWF0IjoxNjU3MjkxNjAwLCJqdGkiOiIwMjI4MzQ5Ni0yZTZiLTQyYWItODEwNy02MTczZDAyOTAzYmYiLCJ1c2VyX3V1aWQiOiJhNWJiMWNiZS1jOGIzLTQ5MjYtYjI0Mi05NThjNGI4NzUyNTQifQ.mSPyT3_zGKXwjH4b3YEBGr6k8ftHfxEPzor987usmnWOfznKmMrJXy20wBCLhvNXSrYUFcyaHoszAqZLpSy0Kw",
-    testApp
-  );
+  const calendly = new Calendly("test_key", testApp);
 
   afterEach(() => {
     jest.resetAllMocks();
@@ -69,7 +66,11 @@ describe("Calendly", () => {
 
   describe("getCurrentUserDetails", () => {
     it("should return the current user's details", async () => {
+      const getCurrentUserMock = jest
+        .spyOn(calendly, "getCurrentUserDetails")
+        .mockResolvedValueOnce(userDetails);
       const res = await calendly.getCurrentUserDetails();
+      expect(getCurrentUserMock).toHaveBeenCalledTimes(1);
       expect(res).toEqual(userDetails);
     });
   });
