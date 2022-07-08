@@ -1,5 +1,5 @@
-// import { getSubscriptionKobject } from "./get-subscription-kobject";
+import { getSubscriptionKobject } from "./get-subscription-kobject";
 
-// export default {
-//   getSubscriptionKobject,
-// };
+export default {
+  getSubscriptionKobject,
+};

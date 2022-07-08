@@ -39,9 +39,20 @@ export const event = {
     },
   },
   map: (event, externalId?: string) => {
-    console.log("********EVENT*****", event);
+    console.log(event);
     return {
-      custom: {},
+      custom: {
+        canceledStr: "",
+        cancelReasonStr: "",
+        canceledDateStr: "",
+        endTimeAt: "",
+        eventDescriptionStr: "",
+        eventDurationNum: 0,
+        eventLocationStr: "",
+        eventNameStr: "",
+        eventTypeStr: "",
+        startTimeAt: "",
+      },
       data: event.calendly,
       title: `Event ${event.calendly.id}`,
       externalId,
