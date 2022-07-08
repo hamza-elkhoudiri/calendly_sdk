@@ -2,7 +2,6 @@ import axios from "axios";
 import {
   SUBSCRIPTION_EVENT,
   INVITEE_CREATED,
-  INVITEE_UPDATED,
   INVITEE_CANCELED,
 } from "../constants";
 import { testApp } from "../testing/mocks";
@@ -124,7 +123,7 @@ describe("Calendly", () => {
             updated_at: "2019-08-24T14:15:22.123456Z",
             retry_started_at: "2019-08-24T14:15:22.123456Z",
             state: "active",
-            events: [INVITEE_UPDATED, INVITEE_CANCELED],
+            events: [INVITEE_CANCELED],
             scope: "user",
             organization: "https://api.calendly.com/organizations",
             user: "https://api.calendly.com/users",
@@ -155,7 +154,7 @@ describe("Calendly", () => {
             updated_at: "2019-08-24T14:15:22.123456Z",
             retry_started_at: "2019-08-24T14:15:22.123456Z",
             state: "active",
-            events: [INVITEE_CREATED, INVITEE_UPDATED, INVITEE_CANCELED],
+            events: [INVITEE_CREATED, INVITEE_CANCELED],
             scope: "user",
             organization: "https://api.calendly.com/organizations",
             user: "https://api.calendly.com/users",
@@ -189,7 +188,7 @@ describe("Calendly", () => {
             updated_at: "2019-08-24T14:15:22.123456Z",
             retry_started_at: "2019-08-24T14:15:22.123456Z",
             state: "active",
-            events: [INVITEE_UPDATED],
+            events: [INVITEE_CREATED],
             scope: "user",
             organization: "https://api.calendly.com/organizations",
             user: "https://api.calendly.com/users",

@@ -15,7 +15,6 @@ export const APP_ROLES = [
 export const SUBSCRIPTION_EVENT = "calendly.event";
 
 export const INVITEE_CREATED = "invitee.created";
-export const INVITEE_UPDATED = "invitee.updated";
 export const INVITEE_CANCELED = "invitee.canceled";
 
-export const EVENTS = [INVITEE_CREATED, INVITEE_UPDATED, INVITEE_CANCELED];
+export const EVENTS = [INVITEE_CREATED, INVITEE_CANCELED];

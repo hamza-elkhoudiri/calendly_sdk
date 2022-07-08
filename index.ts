@@ -1,6 +1,5 @@
 import "dotenv/config";
 import { AppOptions, KApp } from "@kustomer/apps-server-sdk";
-import changelog from "./changelog/index.json";
 import { APP_ROLES } from "./constants";
 import * as API from "./api";
 
@@ -12,10 +11,12 @@ if (!process.env.CLIENT_ID || !process.env.CLIENT_SECRET) {
   throw new Error("clientId and clientSecret are required");
 }
 
+const APP_VERSION = "3.0.10";
+
 const options: AppOptions = {
   app: "calendly_sdk",
   title: "Calendly",
-  version: "3.0.9",
+  version: APP_VERSION,
   iconUrl: `${process.env.BASE_URL}/assets/images/icon.png`,
   url: process.env.BASE_URL,
   clientId: process.env.CLIENT_ID,
@@ -47,7 +48,9 @@ const options: AppOptions = {
       website: "https://calendly.com",
     },
   },
-  changelog,
+  changelog: {
+    [APP_VERSION]: "Something",
+  },
   default: false,
   system: false,
   visibility: "public",
