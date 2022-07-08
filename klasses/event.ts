@@ -38,24 +38,12 @@ export const event = {
       },
     },
   },
-  map: (event, externalId?: string) => {
-    console.log(event);
+  map: (event) => {
+    console.log("********EVENT********", event);
     return {
-      custom: {
-        canceledStr: "",
-        cancelReasonStr: "",
-        canceledDateStr: "",
-        endTimeAt: "",
-        eventDescriptionStr: "",
-        eventDurationNum: 0,
-        eventLocationStr: "",
-        eventNameStr: "",
-        eventTypeStr: "",
-        startTimeAt: "",
-      },
+      custom: {},
       data: event.calendly,
       title: `Event ${event.calendly.id}`,
-      externalId,
     };
   },
 };

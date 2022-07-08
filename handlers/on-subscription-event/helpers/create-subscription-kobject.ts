@@ -31,6 +31,8 @@ export async function createSubscriptionKobject(
     emails: [{ email: event.calendly.email }],
   });
 
+  app.log.info("created customer");
+
   await Customers.createKObject(customer.id, klasses.event.name, kobject);
 
   app.log.info("created kobject");
