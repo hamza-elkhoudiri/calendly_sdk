@@ -91,7 +91,7 @@ describe("Calendly", () => {
         .mockResolvedValueOnce(userDetails);
       const spy = jest
         .spyOn(axios, "get")
-        .mockResolvedValueOnce({ data: { webhooks: collectionResponse } });
+        .mockResolvedValueOnce({ data: collectionResponse });
 
       await expect(calendly.getWebhooks()).resolves.toEqual(collectionResponse);
       expect(spy).toHaveBeenCalledTimes(1);

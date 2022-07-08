@@ -31,7 +31,7 @@ export class Calendly {
       `${this.baseUrl}/webhook_subscriptions?scope=organization&organization=${userDetails.current_organization}`,
       this.headers
     );
-    return res?.data?.webhooks;
+    return res?.data;
   }
 
   async getCurrentUserDetails() {
