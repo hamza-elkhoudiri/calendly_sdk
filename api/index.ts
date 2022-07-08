@@ -1,1 +1,1 @@
-export * from "./Calendly";
+export * from "./calendly";

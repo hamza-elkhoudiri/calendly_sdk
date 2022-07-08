@@ -19,7 +19,7 @@
 		"allowJs": false,
     "removeComments": false,
     "declaration": true,
-    "types": ["node"]
+    "types": ["jest", "node"]
 	},
   "ts-node": {
 		"files": true,

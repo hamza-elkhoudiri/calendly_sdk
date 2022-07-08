@@ -33,17 +33,41 @@ export class Calendly {
     return res?.data?.webhooks;
   }
 
+  async getCurrentUserDetails() {
+    const res = await axios.get(`${this.baseUrl}/users/me`, this.headers);
+    return res?.data?.resource;
+  }
+
   async getEventsNotAlreadyRegistered(orgId: string) {
-    const webhooks = await this.getWebhooks();
+    const { collection } = await this.getWebhooks();
 
-    if (!webhooks || !webhooks.length) return EVENTS;
-
+    if (!collection || !collection.length) return EVENTS;
     return EVENTS.filter((event) => {
-      return !webhooks.find(
-        (webhook) =>
-          webhook.event === event && webhook.address === this.webhookUrl(orgId)
-      );
+      return !collection.find((webhook) => {
+        return (
+          webhook.events.includes(event) &&
+          webhook.callback_url === this.webhookUrl(orgId)
+        );
+      });
     });
+  }
+
+  async createWebhooks(orgId) {
+    const userDetails = await this.getCurrentUserDetails();
+
+    const payload = {
+      url: this.webhookUrl(orgId),
+      events: EVENTS,
+      organization: userDetails?.current_organization,
+      scope: "organization",
+    };
+
+    const res = await axios.post(
+      `${this.baseUrl}/webhook_subscriptions`,
+      payload,
+      this.headers
+    );
+    return res?.data?.resource;
   }
 
   async registerWebhooks(orgId: string) {
@@ -54,18 +78,6 @@ export class Calendly {
       return [];
     }
 
-    const payload = {
-      url: this.webhookUrl(orgId),
-      events: EVENTS,
-      organization: "",
-      scope: "organization",
-    };
-
-    const res = await axios.post(
-      `${this.baseUrl}/webhook_subscriptions`,
-      payload,
-      this.headers
-    );
-    return res?.data?.webhook;
+    return this.createWebhooks(orgId);
   }
 }
