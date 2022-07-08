@@ -18,11 +18,4 @@ export const INVITEE_CREATED = "invitee.created";
 export const INVITEE_UPDATED = "invitee.updated";
 export const INVITEE_CANCELED = "invitee.canceled";
 
-export const ROUTING_FORM_SUBMISSION_CREATED =
-  "routing_form_submission.created";
-export const EVENTS = [
-  INVITEE_CREATED,
-  INVITEE_UPDATED,
-  INVITEE_CANCELED,
-  ROUTING_FORM_SUBMISSION_CREATED,
-];
+export const EVENTS = [INVITEE_CREATED, INVITEE_UPDATED, INVITEE_CANCELED];

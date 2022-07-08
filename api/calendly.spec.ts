@@ -4,7 +4,6 @@ import {
   INVITEE_CREATED,
   INVITEE_UPDATED,
   INVITEE_CANCELED,
-  ROUTING_FORM_SUBMISSION_CREATED,
 } from "../constants";
 import { testApp } from "../testing/mocks";
 import { Calendly } from "./calendly";
@@ -28,7 +27,7 @@ const createResponse = {
   created_at: "2022-07-08T17:18:41.993961Z",
   creator:
     "https://api.calendly.com/users/a5bb1cbe-c8b3-4926-b242-958c4b875254",
-  events: [INVITEE_CREATED, INVITEE_CANCELED, ROUTING_FORM_SUBMISSION_CREATED],
+  events: [INVITEE_CREATED, INVITEE_CANCELED],
   organization:
     "https://api.calendly.com/organizations/46d075e3-faf1-4d77-bf29-b9984c3b6faf",
   retry_started_at: null,
@@ -125,11 +124,7 @@ describe("Calendly", () => {
             updated_at: "2019-08-24T14:15:22.123456Z",
             retry_started_at: "2019-08-24T14:15:22.123456Z",
             state: "active",
-            events: [
-              INVITEE_UPDATED,
-              INVITEE_CANCELED,
-              ROUTING_FORM_SUBMISSION_CREATED,
-            ],
+            events: [INVITEE_UPDATED, INVITEE_CANCELED],
             scope: "user",
             organization: "https://api.calendly.com/organizations",
             user: "https://api.calendly.com/users",
@@ -160,12 +155,7 @@ describe("Calendly", () => {
             updated_at: "2019-08-24T14:15:22.123456Z",
             retry_started_at: "2019-08-24T14:15:22.123456Z",
             state: "active",
-            events: [
-              INVITEE_CREATED,
-              INVITEE_UPDATED,
-              INVITEE_CANCELED,
-              ROUTING_FORM_SUBMISSION_CREATED,
-            ],
+            events: [INVITEE_CREATED, INVITEE_UPDATED, INVITEE_CANCELED],
             scope: "user",
             organization: "https://api.calendly.com/organizations",
             user: "https://api.calendly.com/users",
@@ -199,7 +189,7 @@ describe("Calendly", () => {
             updated_at: "2019-08-24T14:15:22.123456Z",
             retry_started_at: "2019-08-24T14:15:22.123456Z",
             state: "active",
-            events: [INVITEE_UPDATED, ROUTING_FORM_SUBMISSION_CREATED],
+            events: [INVITEE_UPDATED],
             scope: "user",
             organization: "https://api.calendly.com/organizations",
             user: "https://api.calendly.com/users",
@@ -219,11 +209,7 @@ describe("Calendly", () => {
           created_at: "2022-07-08T17:18:41.993961Z",
           creator:
             "https://api.calendly.com/users/a5bb1cbe-c8b3-4926-b242-958c4b875254",
-          events: [
-            "invitee.created",
-            "invitee.canceled",
-            "routing_form_submission.created",
-          ],
+          events: [INVITEE_CREATED, INVITEE_CANCELED],
           organization:
             "https://api.calendly.com/organizations/46d075e3-faf1-4d77-bf29-b9984c3b6faf",
           retry_started_at: null,
