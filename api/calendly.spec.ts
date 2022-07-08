@@ -86,15 +86,22 @@ describe("Calendly", () => {
 
   describe("getWebhooks", () => {
     it("should get the webhooks", async () => {
+      const userDetailsMock = jest
+        .spyOn(calendly, "getCurrentUserDetails")
+        .mockResolvedValueOnce(userDetails);
       const spy = jest
         .spyOn(axios, "get")
         .mockResolvedValueOnce({ data: { webhooks: collectionResponse } });
 
       await expect(calendly.getWebhooks()).resolves.toEqual(collectionResponse);
       expect(spy).toHaveBeenCalledTimes(1);
+      expect(userDetailsMock).toHaveBeenCalledTimes(1);
     });
 
     it("should throw an error if request fails", async () => {
+      jest
+        .spyOn(calendly, "getCurrentUserDetails")
+        .mockResolvedValueOnce(userDetails);
       const spy = jest
         .spyOn(axios, "get")
         .mockRejectedValueOnce(new Error("error"));

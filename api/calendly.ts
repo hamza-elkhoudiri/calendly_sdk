@@ -26,8 +26,9 @@ export class Calendly {
   }
 
   async getWebhooks() {
+    const userDetails = await this.getCurrentUserDetails();
     const res = await axios.get(
-      `${this.baseUrl}/webhook_subscriptions`,
+      `${this.baseUrl}/webhook_subscriptions?scope=organization&organization=${userDetails.current_organization}`,
       this.headers
     );
     return res?.data?.webhooks;
