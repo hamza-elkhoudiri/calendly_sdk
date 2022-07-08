@@ -1,6 +1,8 @@
 import "dotenv/config";
-import { KApp } from "@kustomer/apps-server-sdk";
+import { AppOptions, KApp } from "@kustomer/apps-server-sdk";
 import changelog from "./changelog/index.json";
+import { APP_ROLES } from "./constants";
+import * as API from "./api";
 
 if (!process.env.BASE_URL) {
   throw new Error("baseUrl is required");
@@ -10,27 +12,15 @@ if (!process.env.CLIENT_ID || !process.env.CLIENT_SECRET) {
   throw new Error("clientId and clientSecret are required");
 }
 
-const app = new KApp({
+const options: AppOptions = {
   app: "calendly_sdk",
   title: "Calendly",
-  version: "0.0.2",
+  version: "3.0.5",
   iconUrl: `${process.env.BASE_URL}/assets/images/icon.png`,
   url: process.env.BASE_URL,
   clientId: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
-  roles: [
-    "org.user.customer.read",
-    "org.user.customer.write",
-    "org.user.kobject.read",
-    "org.user.kobject.write",
-    "org.permission.customer.read",
-    "org.permission.customer.create",
-    "org.permission.customer.update",
-    "org.permission.kobject.create",
-    "org.permission.kobject.update",
-    "org.permission.kobject.kobject_*.create",
-    "org.permission.kobject.kobject_*.update",
-  ],
+  roles: APP_ROLES,
   env: "qa",
   releaseNotesUrl:
     "https://help.kustomer.com/calendly-app-release-notes-ByTY2RmBu",
@@ -61,7 +51,19 @@ const app = new KApp({
   default: false,
   system: false,
   visibility: "public",
-});
+};
+
+const app = new KApp(options);
+const Calendly = new API.Calendly(process.env.CALENDLY_API_KEY as string, app);
+
+app.onInstall = async (_userId, orgId) => {
+  try {
+    app.log.info("registering webhooks");
+    await Calendly.registerWebhooks(orgId);
+  } catch (err) {
+    app.log.error(JSON.stringify(err, undefined, 2));
+  }
+};
 
 (async () => {
   try {

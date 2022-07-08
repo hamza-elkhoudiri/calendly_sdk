@@ -1,4 +1,4 @@
 {
-    "0.0.2": "{{January 2022}}What's New \n-   General app improvements and bug fixes.",
+    "3.0.5": "{{January 2022}}What's New \n-   General app improvements and bug fixes.",
     "2.0.0": "{{April 2021}}What's New \n-   The Calendly app has been rebuilt to adopt the latest version of the Calendly API. The Legacy API used in earlier versions of the Calendly app will be deprecated, so users will need to upgrade to Calendly 2.0 in order to avoid future service interruptions." 
 }
