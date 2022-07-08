@@ -15,7 +15,7 @@ if (!process.env.CLIENT_ID || !process.env.CLIENT_SECRET) {
 const options: AppOptions = {
   app: "calendly_sdk",
   title: "Calendly",
-  version: "3.0.7",
+  version: "3.0.9",
   iconUrl: `${process.env.BASE_URL}/assets/images/icon.png`,
   url: process.env.BASE_URL,
   clientId: process.env.CLIENT_ID,
