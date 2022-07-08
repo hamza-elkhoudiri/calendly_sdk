@@ -14,8 +14,10 @@ export class Calendly {
 
   get headers() {
     return {
-      Authorization: `Bearer ${this.token}`,
-      "Content-Type": "application/json",
+      headers: {
+        Authorization: `Bearer ${this.token}`,
+        "Content-Type": "application/json",
+      },
     };
   }
 
