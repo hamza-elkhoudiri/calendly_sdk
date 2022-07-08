@@ -1,6 +1,6 @@
 import "dotenv/config";
 import { AppOptions, KApp } from "@kustomer/apps-server-sdk";
-import { APP_ROLES } from "./constants";
+import { APP_ROLES, SUBSCRIPTION_EVENT } from "./constants";
 import * as API from "./api";
 
 if (!process.env.BASE_URL) {
@@ -11,7 +11,7 @@ if (!process.env.CLIENT_ID || !process.env.CLIENT_SECRET) {
   throw new Error("clientId and clientSecret are required");
 }
 
-const APP_VERSION = "3.0.10";
+const APP_VERSION = "3.0.11";
 
 const options: AppOptions = {
   app: "calendly_sdk",
@@ -74,6 +74,10 @@ app.onInstall = async (_userId, orgId) => {
       +(process.env.PORT || 3001),
       process.env.NODE_ENV === "local"
     );
+
+    app.onHook(SUBSCRIPTION_EVENT, () => {
+      console.log("HELLO HELLO");
+    });
 
     app.log.info(await app.in("aacebo").getToken());
   } catch (err) {
