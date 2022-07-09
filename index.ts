@@ -3,6 +3,7 @@ import { AppOptions, KApp } from "@kustomer/apps-server-sdk";
 import { APP_ROLES, SUBSCRIPTION_EVENT } from "./constants";
 import * as API from "./api";
 import * as handlers from "./handlers";
+import * as klasses from "./klasses";
 
 if (!process.env.BASE_URL) {
   throw new Error("baseUrl is required");
@@ -12,7 +13,7 @@ if (!process.env.CLIENT_ID || !process.env.CLIENT_SECRET) {
   throw new Error("clientId and clientSecret are required");
 }
 
-const APP_VERSION = "3.0.16";
+const APP_VERSION = "3.0.17";
 
 const options: AppOptions = {
   app: "calendly_sdk",
@@ -68,6 +69,8 @@ app.onInstall = async (_userId, orgId) => {
     app.log.error(JSON.stringify(err, undefined, 2));
   }
 };
+
+app.useKlass(klasses.event.name, klasses.event.scheme);
 
 (async () => {
   try {
