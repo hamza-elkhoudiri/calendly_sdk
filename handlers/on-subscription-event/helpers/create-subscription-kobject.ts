@@ -27,7 +27,7 @@ export async function createSubscriptionKobject(
   app.log.info("creating customer");
 
   customer = await Customers.create({
-    name: `${event.calendly.first_name} ${event.calendly.last_name}`,
+    name: event.calendly.name,
     emails: [{ email: event.calendly.email }],
   });
 
