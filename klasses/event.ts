@@ -43,7 +43,7 @@ export const event = {
     return {
       custom: {},
       data: event.calendly,
-      title: `Event ${event.calendly.id}`,
+      title: `Event ${event.calendly.uri}`,
     };
   },
 };
