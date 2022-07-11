@@ -39,6 +39,7 @@ export const event = {
     },
   },
   map: (event) => {
+    console.log("*******EVENT123*****", event);
     return {
       custom: {
         canceledStr: event.status === "canceled" ? "Yes" : "No",
@@ -55,6 +56,7 @@ export const event = {
       },
       data: event,
       title: event.eventName,
+      externalId: event.uri,
     };
   },
 };

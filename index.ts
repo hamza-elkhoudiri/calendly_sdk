@@ -14,7 +14,7 @@ if (!process.env.CLIENT_ID || !process.env.CLIENT_SECRET) {
   throw new Error("clientId and clientSecret are required");
 }
 
-const APP_VERSION = "3.0.30";
+const APP_VERSION = "3.0.32";
 
 const options: AppOptions = {
   app: "calendly_sdk",
@@ -79,6 +79,7 @@ app.useView("calendly-sdk-event-kview", kviews.event, {
   displayName: "Calendly Event",
   icon: "calendar",
   state: "open",
+  klass: "calendly-sdk-event",
 });
 
 (async () => {
