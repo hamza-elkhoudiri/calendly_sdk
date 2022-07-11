@@ -11,7 +11,11 @@ export function onSubscriptionEvent(app: KApp, Calendly: API.Calendly) {
 
       const eventResourceUrl = body.payload.uri.match(/.+?(?=\/invitee)/)[0];
 
+      app.log.info("eventResourceUrl", eventResourceUrl);
+
       const eventResource = await Calendly.getEventResource(eventResourceUrl);
+
+      app.log.info("eventResource", eventResource);
 
       const Org = app.in(org);
 
@@ -20,8 +24,6 @@ export function onSubscriptionEvent(app: KApp, Calendly: API.Calendly) {
         body.payload.uri,
         app
       );
-
-      app.log.info("kobjects", Org.kobjects);
 
       const event = { kobject, calendly: eventResource };
 
