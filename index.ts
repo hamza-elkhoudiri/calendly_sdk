@@ -1,6 +1,7 @@
 import "dotenv/config";
 import { AppOptions, KApp } from "@kustomer/apps-server-sdk";
 import { APP_ROLES, SUBSCRIPTION_EVENT } from "./constants";
+import kviews from "./kviews";
 import * as API from "./api";
 import * as handlers from "./handlers";
 import * as klasses from "./klasses";
@@ -13,7 +14,7 @@ if (!process.env.CLIENT_ID || !process.env.CLIENT_SECRET) {
   throw new Error("clientId and clientSecret are required");
 }
 
-const APP_VERSION = "3.0.27";
+const APP_VERSION = "3.0.29";
 
 const options: AppOptions = {
   app: "calendly_sdk",
@@ -71,6 +72,14 @@ app.onInstall = async (_userId, orgId) => {
 };
 
 app.useKlass(klasses.event.name, klasses.event.scheme);
+
+app.useView("calendly-sdk-event-kview", kviews.event, {
+  resource: "kobject",
+  context: "expanded-timeline",
+  displayName: "Calendly Event",
+  icon: "calendar",
+  state: "open",
+});
 
 (async () => {
   try {
