@@ -38,6 +38,11 @@ export function onSubscriptionEvent(app: KApp, Calendly: API.Calendly) {
         eventDuration,
         eventStartTime,
         eventEndTime,
+        status: body.payload.status,
+        qAndA: body.payload?.questions_and_answers,
+        eventUpdatedAt: body.payload.updated_at,
+        canceledReason: body.payload?.cancellation?.reason,
+        eventLocation: body.payload?.location?.location,
       });
 
       const Org = app.in(org);
@@ -48,7 +53,22 @@ export function onSubscriptionEvent(app: KApp, Calendly: API.Calendly) {
         app
       );
 
-      const event = { kobject, calendly: eventResource };
+      const event = {
+        kobject,
+        calendly: {
+          eventType,
+          eventName,
+          eventDescription,
+          eventDuration,
+          eventStartTime,
+          eventEndTime,
+          status: body.payload.status,
+          qAndA: body.payload?.questions_and_answers,
+          eventUpdatedAt: body.payload.updated_at,
+          canceledReason: body.payload?.cancellation?.reason,
+          eventLocation: body.payload?.location?.location,
+        },
+      };
 
       app.log.info("event", event);
 

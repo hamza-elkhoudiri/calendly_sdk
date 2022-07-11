@@ -39,11 +39,22 @@ export const event = {
     },
   },
   map: (event) => {
-    console.log("********EVENT********", event);
     return {
-      custom: {},
-      data: event.calendly,
-      title: `Event ${event.calendly.uri}`,
+      custom: {
+        canceledStr: event.status === "canceled" ? "Yes" : "No",
+        cancelReasonStr: event.canceledReason || "N/A",
+        canceledDateStr:
+          event.status === "canceled" ? event.eventUpdatedAt : "N/A",
+        endTimeAt: event.eventEndTime,
+        eventDescriptionStr: event.eventDescription,
+        eventDurationNum: event.eventDuration,
+        eventLocationStr: event.eventLocation,
+        eventNameStr: event.eventName,
+        eventTypeStr: event.eventType,
+        startTimeAt: event.eventStartTime,
+      },
+      data: event,
+      title: event.eventName,
     };
   },
 };

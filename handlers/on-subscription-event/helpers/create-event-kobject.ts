@@ -12,7 +12,7 @@ export async function createEventKobject(
 
   let customer = await Customers.getByEmail(event.calendly.email);
 
-  const kobject: KObject = klasses.event.map(event);
+  const kobject: KObject = klasses.event.map(event.calendly);
 
   if (customer) {
     await Customers.createKObject(customer.id, klasses.event.name, kobject);
