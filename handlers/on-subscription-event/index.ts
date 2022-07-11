@@ -16,7 +16,11 @@ export function onSubscriptionEvent(app: KApp) {
         app
       );
 
+      app.log.info("kobject", kobject);
+
       const event = { kobject, calendly: body.payload };
+
+      app.log.info("event", event);
 
       if (event.kobject) {
         return await helpers.updateEventKobject(Org.kobjects, event, app);
