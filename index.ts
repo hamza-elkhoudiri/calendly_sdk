@@ -13,7 +13,7 @@ if (!process.env.CLIENT_ID || !process.env.CLIENT_SECRET) {
   throw new Error("clientId and clientSecret are required");
 }
 
-const APP_VERSION = "3.0.26";
+const APP_VERSION = "3.0.27";
 
 const options: AppOptions = {
   app: "calendly_sdk",

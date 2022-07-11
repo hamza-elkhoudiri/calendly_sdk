@@ -56,6 +56,7 @@ export function onSubscriptionEvent(app: KApp, Calendly: API.Calendly) {
       const event = {
         kobject,
         calendly: {
+          ...body.payload,
           eventType,
           eventName,
           eventDescription,
