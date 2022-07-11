@@ -2,12 +2,10 @@ import { KApp, KObject } from "@kustomer/apps-server-sdk";
 import { Customers } from "@kustomer/apps-server-sdk/lib/api/customer";
 
 import * as klasses from "../../../klasses";
-import * as API from "../../../api";
 
 export async function createSubscriptionKobject(
   Customers: Customers,
   event: any,
-  Calendly: API.Calendly,
   app: KApp
 ) {
   app.log.info("creating kobject");

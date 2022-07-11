@@ -16,7 +16,7 @@
         "node": ">=16.0.0"
     },
     "dependencies": {
-        "@kustomer/apps-server-sdk": "^0.0.17",
+        "@kustomer/apps-server-sdk": "^0.0.20",
         "dotenv": "^16.0.1"
     },
     "devDependencies": {

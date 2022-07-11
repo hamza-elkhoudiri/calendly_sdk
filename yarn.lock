@@ -565,10 +565,10 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@kustomer/apps-server-sdk@^0.0.17":
-  version "0.0.17"
-  resolved "https://registry.npmjs.org/@kustomer/apps-server-sdk/-/apps-server-sdk-0.0.17.tgz"
-  integrity sha512-JWiB31M86n0W2GgWN6aNNLCBH92NepyN1FG+2Qq2ya55hZJwkaLJG/ZKtBR8Vnj/ZTJtio1Ma1J16h+YPz5rRQ==
+"@kustomer/apps-server-sdk@^0.0.20":
+  version "0.0.20"
+  resolved "https://registry.yarnpkg.com/@kustomer/apps-server-sdk/-/apps-server-sdk-0.0.20.tgz#edb510b7d080dfa2ed0c2cf59da838933f508d4e"
+  integrity sha512-R+wWyO7vH2CPEr/Sc5sOSwX7EwLfIlnORFrqZPGad0F8tkvduhG206+J7eelQ/ZHBaQ/6tbR2TKeGzcLGE6NeA==
   dependencies:
     axios "^0.21.1"
     cors "^2.8.5"
