@@ -54,7 +54,9 @@ export const event = {
         eventTypeStr: event.eventType,
         startTimeAt: event.eventStartTime,
       },
-      data: event,
+      data: {
+        payload: event,
+      },
       title: event.eventName,
       externalId: event.uri,
     };
