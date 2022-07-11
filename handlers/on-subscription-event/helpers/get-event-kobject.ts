@@ -3,19 +3,16 @@ import { KObjects } from "@kustomer/apps-server-sdk/lib/api/kobject";
 
 import * as klasses from "../../../klasses";
 
-export async function getSubscriptionKobject(
+export async function getEventKobject(
   Kobjects: KObjects,
-  eventId: number,
+  eventId: string,
   app: KApp
 ) {
   app.log.info("getting kobject");
 
-  const kobject = await Kobjects.getByExternalId(
-    String(eventId),
-    klasses.event.name
-  );
+  const kobject = await Kobjects.getByExternalId(eventId, klasses.event.name);
 
-  app.log.info("kobject retrieved");
+  app.log.info("kobject retrieved", kobject);
 
   return kobject;
 }

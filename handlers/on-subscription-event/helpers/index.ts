@@ -1,9 +1,9 @@
-import { getSubscriptionKobject } from "./get-subscription-kobject";
-import { createSubscriptionKobject } from "./create-subscription-kobject";
-import { updateSubscriptionKobject } from "./update-subscription-kobject";
+import { getEventKobject } from "./get-event-kobject";
+import { createEventKobject } from "./create-event-kobject";
+import { updateEventKobject } from "./update-event-kobject";
 
 export default {
-  getSubscriptionKobject,
-  createSubscriptionKobject,
-  updateSubscriptionKobject,
+  getEventKobject,
+  createEventKobject,
+  updateEventKobject,
 };

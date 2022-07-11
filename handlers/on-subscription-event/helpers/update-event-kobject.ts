@@ -3,7 +3,7 @@ import { KApp, KObject } from "@kustomer/apps-server-sdk";
 import * as klasses from "../../../klasses";
 import { KObjects } from "@kustomer/apps-server-sdk/lib/api/kobject";
 
-export async function updateSubscriptionKobject(
+export async function updateEventKobject(
   Kobjects: KObjects,
   event: any,
   app: KApp

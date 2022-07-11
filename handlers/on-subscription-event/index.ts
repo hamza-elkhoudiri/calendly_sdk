@@ -10,7 +10,7 @@ export function onSubscriptionEvent(app: KApp) {
 
       const Org = app.in(org);
 
-      const kobject = await helpers.getSubscriptionKobject(
+      const kobject = await helpers.getEventKobject(
         Org.kobjects,
         body.payload.uri,
         app
@@ -19,14 +19,10 @@ export function onSubscriptionEvent(app: KApp) {
       const event = { kobject, calendly: body.payload };
 
       if (event.kobject) {
-        return await helpers.updateSubscriptionKobject(
-          Org.kobjects,
-          event,
-          app
-        );
+        return await helpers.updateEventKobject(Org.kobjects, event, app);
       }
 
-      return await helpers.createSubscriptionKobject(Org.customers, event, app);
+      return await helpers.createEventKobject(Org.customers, event, app);
     } catch (err) {
       app.log.error("failed to process webhook", err);
     }

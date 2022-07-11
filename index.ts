@@ -13,7 +13,7 @@ if (!process.env.CLIENT_ID || !process.env.CLIENT_SECRET) {
   throw new Error("clientId and clientSecret are required");
 }
 
-const APP_VERSION = "3.0.20";
+const APP_VERSION = "3.0.21";
 
 const options: AppOptions = {
   app: "calendly_sdk",
@@ -79,7 +79,7 @@ app.useKlass(klasses.event.name, klasses.event.scheme);
       process.env.NODE_ENV === "local"
     );
 
-    app.onHook(SUBSCRIPTION_EVENT, handlers.onSubscriptionEvent(app, Calendly));
+    app.onHook(SUBSCRIPTION_EVENT, handlers.onSubscriptionEvent(app));
 
     app.log.info(await app.in("aacebo").getToken());
   } catch (err) {

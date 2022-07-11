@@ -3,7 +3,7 @@ import { Customers } from "@kustomer/apps-server-sdk/lib/api/customer";
 
 import * as klasses from "../../../klasses";
 
-export async function createSubscriptionKobject(
+export async function createEventKobject(
   Customers: Customers,
   event: any,
   app: KApp
