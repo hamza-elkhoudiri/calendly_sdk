@@ -53,6 +53,11 @@ export class Calendly {
     });
   }
 
+  async getEventResource(url: string) {
+    const res = await axios.get(url, this.headers);
+    return res?.data?.resource;
+  }
+
   async createWebhooks(orgId) {
     const userDetails = await this.getCurrentUserDetails();
 
