@@ -31,20 +31,6 @@ export function onSubscriptionEvent(app: KApp, Calendly: API.Calendly) {
 
       const eventEndTime = eventResource?.end_time;
 
-      app.log.info("eventDetails", {
-        eventType,
-        eventName,
-        eventDescription,
-        eventDuration,
-        eventStartTime,
-        eventEndTime,
-        status: body.payload.status,
-        qAndA: body.payload?.questions_and_answers,
-        eventUpdatedAt: body.payload.updated_at,
-        canceledReason: body.payload?.cancellation?.reason,
-        eventLocation: body.payload?.location?.location,
-      });
-
       const Org = app.in(org);
 
       const kobject = await helpers.getEventKobject(
