@@ -15,7 +15,30 @@ export function onSubscriptionEvent(app: KApp, Calendly: API.Calendly) {
 
       const eventResource = await Calendly.getEventResource(eventResourceUrl);
 
-      app.log.info("eventResource", eventResource);
+      const eventTypeUrl = eventResource.event_type;
+
+      const eventTypeResource = await Calendly.getEventResource(eventTypeUrl);
+
+      const eventType = eventTypeResource?.type;
+
+      const eventName = eventResource?.name;
+
+      const eventDescription = eventTypeResource?.description_plain;
+
+      const eventDuration = eventTypeResource?.duration;
+
+      const eventStartTime = eventResource?.start_time;
+
+      const eventEndTime = eventResource?.end_time;
+
+      app.log.info("eventDetails", {
+        eventType,
+        eventName,
+        eventDescription,
+        eventDuration,
+        eventStartTime,
+        eventEndTime,
+      });
 
       const Org = app.in(org);
 
