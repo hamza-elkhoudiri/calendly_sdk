@@ -1,5 +1,5 @@
 export interface CalendlySettings {
   default: {
-    authToken: string;
+    authToken?: string;
   };
 }
