@@ -5,6 +5,7 @@ import kviews from "./kviews";
 import * as API from "./api";
 import * as handlers from "./handlers";
 import * as klasses from "./klasses";
+import { CalendlySettings } from "./types";
 
 if (!process.env.BASE_URL) {
   throw new Error("baseUrl is required");
@@ -14,7 +15,7 @@ if (!process.env.CLIENT_ID || !process.env.CLIENT_SECRET) {
   throw new Error("clientId and clientSecret are required");
 }
 
-const APP_VERSION = "3.0.34";
+const APP_VERSION = "3.0.35";
 
 const options: AppOptions = {
   app: "calendly_sdk",
@@ -54,12 +55,21 @@ const options: AppOptions = {
   changelog: {
     [APP_VERSION]: "Something",
   },
+  settings: {
+    default: {
+      authToken: {
+        type: "secret",
+        defaultValue: "",
+        required: true,
+      },
+    },
+  },
   default: false,
   system: false,
   visibility: "public",
 };
 
-const app = new KApp(options);
+const app = new KApp<CalendlySettings>(options);
 const Calendly = new API.Calendly(process.env.CALENDLY_API_KEY as string, app);
 
 app.onInstall = async (_userId, orgId) => {
@@ -92,6 +102,7 @@ app.useView("calendly-sdk-event-kview", kviews.event, {
     app.onHook(SUBSCRIPTION_EVENT, handlers.onSubscriptionEvent(app, Calendly));
 
     app.log.info(await app.in("aacebo").getToken());
+    app.log.info("APP SETTINGS", await app.in("aacebo").settings.get());
   } catch (err) {
     app.log.error(JSON.stringify(err, undefined, 2));
   }
