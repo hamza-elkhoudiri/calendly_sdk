@@ -15,7 +15,7 @@ if (!process.env.CLIENT_ID || !process.env.CLIENT_SECRET) {
   throw new Error("clientId and clientSecret are required");
 }
 
-const APP_VERSION = "3.0.39";
+const APP_VERSION = "3.0.40";
 
 const options: AppOptions = {
   app: "calendly_sdk",
@@ -70,7 +70,7 @@ const options: AppOptions = {
 };
 
 const app = new KApp<CalendlySettings>(options);
-const Calendly = new API.Calendly(app);
+let Calendly;
 
 app.onInstall = async (_userId, orgId) => {
   try {
@@ -97,6 +97,12 @@ app.useView("calendly-sdk-event-kview", kviews.event, {
     await app.start(
       +(process.env.PORT || 3001),
       process.env.NODE_ENV === "local"
+    );
+    const authTokenSetting = await app.in("aacebo").settings.get();
+
+    Calendly = new API.Calendly(
+      authTokenSetting?.default.authToken as string,
+      app
     );
 
     app.onHook(SUBSCRIPTION_EVENT, handlers.onSubscriptionEvent(app, Calendly));
