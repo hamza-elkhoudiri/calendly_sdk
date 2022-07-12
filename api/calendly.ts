@@ -7,8 +7,8 @@ export class Calendly {
   token: string;
   app: KApp;
 
-  constructor(token: string, app: KApp) {
-    this.token = token;
+  constructor(app: KApp) {
+    this.token = this.getSettings()?.default?.authToken;
     this.app = app;
   }
 
@@ -23,6 +23,19 @@ export class Calendly {
 
   webhookUrl(orgId: string) {
     return `${this.app.manifest.url}/orgs/${orgId}/hooks/${SUBSCRIPTION_EVENT}`;
+  }
+
+  getSettings() {
+    let calendlySettings;
+
+    this.app
+      .in("aacebo")
+      .settings.get()
+      .then((settings) => {
+        calendlySettings = settings;
+      });
+
+    return calendlySettings;
   }
 
   async getWebhooks() {

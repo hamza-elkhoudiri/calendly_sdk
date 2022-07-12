@@ -15,7 +15,7 @@ if (!process.env.CLIENT_ID || !process.env.CLIENT_SECRET) {
   throw new Error("clientId and clientSecret are required");
 }
 
-const APP_VERSION = "3.0.38";
+const APP_VERSION = "3.0.39";
 
 const options: AppOptions = {
   app: "calendly_sdk",
@@ -69,18 +69,11 @@ const options: AppOptions = {
   visibility: "public",
 };
 
-let authTokenSetting;
-
 const app = new KApp<CalendlySettings>(options);
-const Calendly = new API.Calendly(
-  authTokenSetting?.default.authToken as string,
-  app
-);
+const Calendly = new API.Calendly(app);
 
 app.onInstall = async (_userId, orgId) => {
   try {
-    authTokenSetting = await app.in("aacebo").settings.get();
-
     app.log.info("registering webhooks");
     await Calendly.registerWebhooks(orgId);
   } catch (err) {
